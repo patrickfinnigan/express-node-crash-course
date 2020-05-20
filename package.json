@@ -1,0 +1,22 @@
+{
+  "name": "express-node-crash-course",
+  "version": "1.0.0",
+  "description": "taken from this vid (https://www.youtube.com/watch?v=k_0ZzvHbNBQ)",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patrickfinnigan/express-node-crash-course.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/patrickfinnigan/express-node-crash-course/issues"
+  },
+  "homepage": "https://github.com/patrickfinnigan/express-node-crash-course#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
