@@ -2,9 +2,25 @@ doctype html
 html
     head
         title Knowledgebase
+        link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.css')
     body
-        block content
-        br
-        hr
-        footer
-            p Copyright &copy; 2020
+        nav.navbar.navbar-expand-lg.navbar-light.bg-light
+            a.navbar-brand(href='#') Navbar
+            button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNav', aria-controls='navbarNav', aria-expanded='false', aria-label='Toggle navigation')
+                span.navbar-toggler-icon
+            #navbarNav.collapse.navbar-collapse
+                ul.navbar-nav
+                li.nav-item.active
+                    a.nav-link(href='#')
+                    | Knowledgebase 
+                    span.sr-only (current)
+                li.nav-item
+                    a.nav-link(href='/') Home
+                li.nav-item
+                    a.nav-link(href='/articles/add') Add Article
+        .container
+            block content
+            br
+            hr
+            footer
+                p Copyright &copy; 2020
