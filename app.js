@@ -1,8 +1,25 @@
 const express = require("express");
 const path = require("path");
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost/nodekb');
+let db = mongoose.connection;
+
+//check connection
+db.once('open', function () {
+    console.log("Connected to MongoDB!");
+});
+
+//check for db errors
+db.on('error', function () {
+    console.log(err);
+});
 
 //init app
 const app = express();
+
+//bring in models
+let Article = require('./models/article')
 
 //load view engine
 app.set("views", path.join(__dirname, "views"));
@@ -10,40 +27,26 @@ app.set("view engine", "pug");
 
 // Home Route
 app.get("/", function (req, res) {
-    let articles = [
-        {
-            id:1,
-            title: "article 1",
-            author: "noah baudy",
-            body: "this is article 1"
-        },
-        {
-            id:2,
-            title: "article 2",
-            author: "noah baudy",
-            body: "this is article 2"
-        },
-        {
-            id:3,
-            title: "article 3",
-            author: "noah baudy",
-            body: "this is article 3"
-        },
-    ]
-  res.render("index", {
-    title: "articles",
-    articles: articles
-  });
+    Article.find({}, function(err, articles) {
+        if(err){
+            console.log(err);
+        } else {
+            res.render("index", {
+                title: "Articles",
+                articles: articles
+            });
+        }
+    });
 });
 
 // Add route
 app.get("/articles/add", function (req, res) {
-  res.render("add_article", {
-    title: "add article",
-  });
+    res.render("add_article", {
+        title: "add article",
+    });
 });
 
 //Start Server
 app.listen(3000, function () {
-  console.log("Server started on Port 3000");
+    console.log("Server started on Port 3000");
 });
